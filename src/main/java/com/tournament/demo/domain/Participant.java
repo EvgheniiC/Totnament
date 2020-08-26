@@ -14,6 +14,7 @@ public class Participant {
     private int id;
 
     @NotNull
+    @Column(name = "nickName")
     private String nickName;
 
     public Participant() {

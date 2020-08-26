@@ -22,6 +22,14 @@ public class Tournament {
     public Tournament() {
     }
 
+    public Set<TournamentMatch> getTournamentMatchSet() {
+        return tournamentMatchSet;
+    }
+
+    public void setTournamentMatchSet(Set<TournamentMatch> tournamentMatchSet) {
+        this.tournamentMatchSet = tournamentMatchSet;
+    }
+
     public Tournament(String name) {
         this.name = name;
     }

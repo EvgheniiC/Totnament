@@ -23,10 +23,6 @@ public class TournamentServiceImpl implements TournamentService {
         tournamentRepository.save(tournament);
     }
 
-    public void createTournament(Tournament tournament) {
-        tournamentRepository.save(tournament);
-    }
-
     public Tournament findById(int id) {
         return tournamentRepository.findById(id);
     }
