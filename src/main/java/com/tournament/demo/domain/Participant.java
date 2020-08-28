@@ -14,7 +14,7 @@ public class Participant {
     private int id;
 
     @NotNull
-    @Column(name = "nickName")
+    @Column(name = "nick_name")
     private String nickName;
 
     public Participant() {

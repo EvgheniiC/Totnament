@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "Mach")
+@Table(name = "mach")
 public class TournamentMatch {
 
     @Id
@@ -14,8 +14,10 @@ public class TournamentMatch {
     @Column(name = "mach_id")
     private int id;
 
+    @Column(name = "starttime")
     private LocalDate startTime;
 
+    @Column(name = "finischtime")
     private LocalDate finischTime;
 
     private BigDecimal scores;
@@ -24,11 +26,11 @@ public class TournamentMatch {
     @JoinColumn(name = "tournament_fk_id")
     private Tournament tournament;
 
-    @OneToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "participant_two_fk_id")
     private Participant participantTwo;
 
-    @OneToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "participant_one_fk_id")
     private Participant participantOne;
 

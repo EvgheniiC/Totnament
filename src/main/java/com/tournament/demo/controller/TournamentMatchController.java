@@ -18,7 +18,7 @@ public class TournamentMatchController {
         this.tournamentMatchService = tournamentMatchService;
     }
 
-    @PostMapping(value = "tournament_matchs")
+    @PostMapping(value = "/tournament_matchs")
     public void save(@RequestBody TournamentMatch tournamentMatch) {
         tournamentMatchService.save(tournamentMatch);
     }

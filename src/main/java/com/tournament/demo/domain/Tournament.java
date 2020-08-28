@@ -13,8 +13,7 @@ public class Tournament {
     @Column(name = "tournament_id")
     private int id;
 
-    @OneToMany(mappedBy = "tournament", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE,
-            CascadeType.MERGE})
+    @OneToMany(mappedBy = "tournament", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<TournamentMatch> tournamentMatchSet = new HashSet<>();
 
     private String name;
