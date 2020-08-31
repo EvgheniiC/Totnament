@@ -15,7 +15,6 @@ public class TournamentMatchServiceImpl implements TournamentMatchService {
     public TournamentMatchServiceImpl() {
     }
 
-
     @Override
     public void save(TournamentMatch match) {
         tournamentMatchRepository.save(match);

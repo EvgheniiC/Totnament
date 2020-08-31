@@ -61,4 +61,12 @@ public class TournamentServiceImpl implements TournamentService {
         newTournament.addParticipant(participant);
         tournamentRepository.save(newTournament);
     }
+
+    @Override
+    public void deletePartipiciantFromTournamentId(int tournamentId, int participantId) {
+        final Tournament newTournament = tournamentRepository.findById(tournamentId);
+        final Participant participant = participantRepository.findById(participantId);
+        participant.setTournament(null);
+        tournamentRepository.save(newTournament);
+    }
 }

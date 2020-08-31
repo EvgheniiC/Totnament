@@ -18,4 +18,6 @@ public interface TournamentService  {
     void addPartipiciantToTournament(String tournament, String participant);
 
     void addPartipiciantToTournamentId(int tournamentName, int participiantName);
+
+    void deletePartipiciantFromTournamentId(int tournamentId, int participantId);
 }

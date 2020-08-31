@@ -45,7 +45,11 @@ public class TournamentController {
     @PostMapping(value = "/tournament/participant/{tournamentId}/{participiantId}")
     public void addParticipiantToTournamentId(@PathVariable("tournamentId")  int tournamentId, @PathVariable("participiantId") int participiantId) {
         tournamentService.addPartipiciantToTournamentId(tournamentId,participiantId);
+    }
 
+    @DeleteMapping(value = "/tournament/participant/{tournamentId}/{participiantId}")
+    public void deleteParticipiantFromTournamentId(@PathVariable("tournamentId")  int tournamentId, @PathVariable("participiantId") int participiantId) {
+        tournamentService.deletePartipiciantFromTournamentId(tournamentId,participiantId);
     }
 
 }

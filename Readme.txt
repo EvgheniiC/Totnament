@@ -15,10 +15,10 @@ A *Participant* is an object consist of unique id and unique nickname or even ju
 Operations to be provided by the web service:
 
 - Creating a tournament. +
-- Getting a tournament by its identifier.
+- Getting a tournament by its identifier.+
 - Starting a tournament. Each tournament must have that endpoint, which must generate match grid and appoint opponents for participants (in random way). (including when there are an odd number of participants, e.g. 7/8 or 15/16 participants).
-- Adding participants in tournament.
-- Removing participants from tournament while it's on hold.
+- Adding participants in tournament.+
+- Removing participants from tournament while it's on hold.+
 - Summarizing results in match.
 
 ### Requirements
@@ -58,7 +58,7 @@ A * Участник * - это объект, состоящий из уника
 - Получение турнира по его идентификатору.+
 - Старт турнира. У каждого турнира должна быть конечная точка, которая должна генерировать сетку матчей
 и назначать соперников для участников (случайным образом). (в том числе при нечетном количестве участников, например, 7/8 или 15/16 участников).
-- Добавление участников в турнир.
+- Добавление участников в турнир. +
 - Удаление участников из турнира, пока он приостановлен.+(удаление)
 - Подведение итогов матча.
 
