@@ -1,9 +1,10 @@
 package com.tournament.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
 
 @Entity
 @Table(name = "mach")
@@ -14,14 +15,15 @@ public class TournamentMatch {
     @Column(name = "mach_id")
     private int id;
 
-    @Column(name = "starttime")
+    @Column(name = "start_time")
     private LocalDate startTime;
 
-    @Column(name = "finischtime")
+    @Column(name = "finisch_time")
     private LocalDate finischTime;
 
     private BigDecimal scores;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tournament_fk_id")
     private Tournament tournament;

@@ -49,8 +49,12 @@ public class Tournament {
         this.name = tuornamentName;
     }
 
-    public void addMatch(TournamentMatch tournamentMatch){
+    public void addMatch(TournamentMatch tournamentMatch) {
         tournamentMatchSet.add(tournamentMatch);
+    }
+
+    public void addTournamentMatch(TournamentMatch match){
+        tournamentMatchSet.add(match);
     }
 
     @Override
