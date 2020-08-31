@@ -1,7 +1,9 @@
 package com.tournament.demo.service.impl;
 
 
+import com.tournament.demo.domain.Participant;
 import com.tournament.demo.domain.Tournament;
+import com.tournament.demo.repository.ParticipantRepository;
 import com.tournament.demo.repository.TournamentRepository;
 import com.tournament.demo.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Autowired
     private TournamentRepository tournamentRepository;
+
+    @Autowired
+    private ParticipantRepository participantRepository;
 
     public TournamentServiceImpl() {
     }
@@ -39,7 +44,21 @@ public class TournamentServiceImpl implements TournamentService {
         return tournamentRepository.findByName(name);
     }
 
+    @Override
+    public void addPartipiciantToTournament(String tournamentName, String participantName) {
+        final Tournament newTournament = tournamentRepository.findByName(tournamentName);
+        final Participant participant = participantRepository.findByNickName(participantName);
+        participant.setTournament(newTournament);
+        newTournament.addParticipant(participant);
+        tournamentRepository.save(newTournament);
+    }
 
-
-
+    @Override
+    public void addPartipiciantToTournamentId(int tournamentId, int participantId) {
+        final Tournament newTournament = tournamentRepository.findById(tournamentId);
+        final Participant participant = participantRepository.findById(participantId);
+        participant.setTournament(newTournament);
+        newTournament.addParticipant(participant);
+        tournamentRepository.save(newTournament);
+    }
 }

@@ -1,5 +1,6 @@
 package com.tournament.demo.service;
 
+import com.tournament.demo.domain.Participant;
 import com.tournament.demo.domain.Tournament;
 
 import java.util.List;
@@ -13,4 +14,8 @@ public interface TournamentService  {
     List<Tournament> findAll();
 
     void deleteById(int id);
+
+    void addPartipiciantToTournament(String tournament, String participant);
+
+    void addPartipiciantToTournamentId(int tournamentName, int participiantName);
 }

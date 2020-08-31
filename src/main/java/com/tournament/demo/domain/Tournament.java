@@ -1,9 +1,7 @@
 package com.tournament.demo.domain;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Tournament {
@@ -18,7 +16,18 @@ public class Tournament {
 
     private String name;
 
+    @OneToMany(mappedBy = "tournament", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Participant> participantList = new ArrayList<>();
+
     public Tournament() {
+    }
+
+    public List<Participant> getParticipantList() {
+        return participantList;
+    }
+
+    public void setParticipantList(List<Participant> participantList) {
+        this.participantList = participantList;
     }
 
     public Set<TournamentMatch> getTournamentMatchSet() {
@@ -53,8 +62,8 @@ public class Tournament {
         tournamentMatchSet.add(tournamentMatch);
     }
 
-    public void addTournamentMatch(TournamentMatch match){
-        tournamentMatchSet.add(match);
+    public void addParticipant(Participant participant) {
+        participantList.add(participant);
     }
 
     @Override
@@ -63,11 +72,13 @@ public class Tournament {
         if (o == null || getClass() != o.getClass()) return false;
         Tournament that = (Tournament) o;
         return id == that.id &&
-                Objects.equals(name, that.name);
+                Objects.equals(tournamentMatchSet, that.tournamentMatchSet) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(participantList, that.participantList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, tournamentMatchSet, name, participantList);
     }
 }

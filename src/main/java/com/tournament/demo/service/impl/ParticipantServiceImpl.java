@@ -14,11 +14,15 @@ public class ParticipantServiceImpl implements ParticipantService {
     private ParticipantRepository participantRepository;
 
     public ParticipantServiceImpl() {
-
     }
 
     @Override
     public void save(Participant participant) {
         participantRepository.save(participant);
+    }
+
+    @Override
+    public Participant findByNickName(String nickName) {
+        return participantRepository.findByNickName(nickName);
     }
 }
