@@ -1,11 +1,10 @@
 package com.tournament.demo.service;
 
-import com.tournament.demo.domain.Participant;
 import com.tournament.demo.domain.Tournament;
 
 import java.util.List;
 
-public interface TournamentService  {
+public interface TournamentService {
 
     void save(Tournament tournament);
 
