@@ -17,4 +17,5 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 
     void deleteById(int id);
 
+    boolean existsByName(String name);
 }

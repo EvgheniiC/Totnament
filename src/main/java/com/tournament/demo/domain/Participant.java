@@ -23,17 +23,6 @@ public class Participant {
     @JoinColumn(name = "tournament_fk_id")
     private Tournament tournament;
 
-    public Tournament getTournament() {
-        return tournament;
-    }
-
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
-    }
-
-    public Participant() {
-    }
-
     public int getId() {
         return id;
     }
@@ -50,6 +39,14 @@ public class Participant {
         this.nickName = nickName;
     }
 
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,5 +60,14 @@ public class Participant {
     @Override
     public int hashCode() {
         return Objects.hash(id, nickName, tournament);
+    }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "id=" + id +
+                ", nickName='" + nickName + '\'' +
+                ", tournament=" + tournament +
+                '}';
     }
 }
