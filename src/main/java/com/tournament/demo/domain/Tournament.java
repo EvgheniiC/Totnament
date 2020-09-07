@@ -11,12 +11,12 @@ public class Tournament {
     @Column(name = "tournament_id")
     private int id;
 
-    @OneToMany(mappedBy = "tournament", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tournament", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<TournamentMatch> tournamentMatchSet = new HashSet<>();
 
     private String name;
 
-    @OneToMany(mappedBy = "tournament", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tournament", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Participant> participantList = new ArrayList<>();
 
     public Tournament() {
@@ -79,6 +79,16 @@ public class Tournament {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tournamentMatchSet, name, participantList);
+        return Objects.hash(id, name, participantList);
+    }
+
+    @Override
+    public String toString() {
+        return "Tournament{" +
+                "id=" + id +
+                ", tournamentMatchSet=" + tournamentMatchSet +
+                ", name='" + name + '\'' +
+                ", participantList=" + participantList +
+                '}';
     }
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "mach")
@@ -113,4 +114,35 @@ public class TournamentMatch {
         this.tournament = tournament;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TournamentMatch that = (TournamentMatch) o;
+        return id == that.id &&
+                Objects.equals(startTime, that.startTime) &&
+                Objects.equals(finischTime, that.finischTime) &&
+                Objects.equals(scores, that.scores) &&
+                Objects.equals(tournament, that.tournament) &&
+                Objects.equals(participantTwo, that.participantTwo) &&
+                Objects.equals(participantOne, that.participantOne);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, startTime, finischTime, scores, tournament, participantTwo, participantOne);
+    }
+
+    @Override
+    public String toString() {
+        return "TournamentMatch{" +
+                "id=" + id +
+                ", startTime=" + startTime +
+                ", finischTime=" + finischTime +
+                ", scores=" + scores +
+                ", tournament=" + tournament +
+                ", participantTwo=" + participantTwo +
+                ", participantOne=" + participantOne +
+                '}';
+    }
 }

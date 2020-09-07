@@ -1,10 +1,10 @@
 package com.tournament.demo.service.impl;
 
+import com.tournament.demo.domain.Participant;
 import com.tournament.demo.domain.Tournament;
-import com.tournament.demo.repository.ParticipantRepository;
-import com.tournament.demo.repository.TournamentRepository;
+import com.tournament.demo.service.ParticipantService;
+import com.tournament.demo.service.TournamentService;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Sql(scripts = {"classpath:sql_scripts/Create_table.sql", "classpath:sql_scripts/Truncate_tables.sql"},
@@ -20,29 +22,29 @@ import org.springframework.test.context.junit4.SpringRunner;
 class TournamentServiceImplTest {
 
     @Autowired
-    private TournamentRepository tournamentRepository;
+    private TournamentService tournamentService;
 
     @Autowired
-    private ParticipantRepository participantRepository;
+    private ParticipantService participantService;
 
     @BeforeEach
     public void init() {
         final Tournament tournament = new Tournament();
         tournament.setName("Ligue");
-        tournamentRepository.save(tournament);
+        tournamentService.save(tournament);
     }
 
     @Test
     void save() {
-        if (tournamentRepository.count() == 1) {
-            Assert.assertTrue(tournamentRepository.existsById(1));
+        if (tournamentService.count() == 1) {
+            Assert.assertTrue(tournamentService.existsById(1));
         }
     }
 
     @Test
     void findById() {
-        if (tournamentRepository.count() == 1) {
-            Assert.assertTrue(tournamentRepository.existsById(1));
+        if (tournamentService.count() == 1) {
+            Assert.assertTrue(tournamentService.existsById(1));
         }
     }
 
@@ -50,34 +52,53 @@ class TournamentServiceImplTest {
     void findAll() {
         final Tournament tournament = new Tournament();
         tournament.setName("SiriaA");
-        tournamentRepository.save(tournament);
+        tournamentService.save(tournament);
 
-        Assert.assertEquals(2,tournamentRepository.count());
+        Assert.assertEquals(2, tournamentService.count());
     }
 
     @Test
     void deleteById() {
-        tournamentRepository.deleteById(1);
-        Assert.assertTrue(tournamentRepository.findById(1) == null);
+        tournamentService.deleteById(1);
+        Assert.assertTrue(tournamentService.findById(1) == null);
     }
 
     @Test
     void findByName() {
-        Assert.assertTrue(tournamentRepository.existsByName("Ligue"));
+        Assert.assertTrue(tournamentService.existsByName("Ligue"));
     }
 
     @Test
     void addPartipiciantToTournament() {
+        Participant participant = new Participant();
+        participant.setNickName("Valera");
+        participant.setTournament(tournamentService.findByName("Ligue"));
+        participantService.save(participant);
+        tournamentService.addPartipiciantToTournament(tournamentService.findByName("Ligue").getName(),participantService.findByNickName("Valera").getNickName());
 
-
-
+        Assert.assertEquals("Valera",participantService.findByNickName("Valera").getNickName());
     }
 
     @Test
     void addPartipiciantToTournamentId() {
+        Participant participant = new Participant();
+        participant.setNickName("Valera");
+        participant.setTournament(tournamentService.findByName("Ligue"));
+        participantService.save(participant);
+        tournamentService.addPartipiciantToTournamentId(tournamentService.findByName("Ligue").getId(),participantService.findByNickName("Valera").getId());
+
+        Assert.assertEquals("Valera",participantService.findByNickName("Valera").getNickName());
     }
 
-    @Test
+   /* @Test
     void deletePartipiciantFromTournamentId() {
-    }
+
+        Participant participant = new Participant();
+        participant.setNickName("Valera");
+        participant.setTournament(tournamentService.findByName("Ligue"));
+        participantService.save(participant);
+        tournamentService.deletePartipiciantFromTournamentId(tournamentService.findByName("Ligue").getId(),participantService.findByNickName("Valera").getId());
+
+        Assert.assertNull(participantService.findByNickName("Valera").getTournament());
+    }*/
 }

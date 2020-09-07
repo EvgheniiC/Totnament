@@ -69,4 +69,19 @@ public class TournamentServiceImpl implements TournamentService {
         participant.setTournament(null);
         tournamentRepository.save(newTournament);
     }
+
+    @Override
+    public long count() {
+        return tournamentRepository.count();
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return tournamentRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByName(String name) {
+        return tournamentRepository.existsByName(name);
+    }
 }

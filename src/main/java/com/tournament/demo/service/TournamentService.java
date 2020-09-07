@@ -19,4 +19,12 @@ public interface TournamentService {
     void addPartipiciantToTournamentId(int tournamentName, int participiantName);
 
     void deletePartipiciantFromTournamentId(int tournamentId, int participantId);
+
+    long count();
+
+    boolean existsById(int id);
+
+    boolean existsByName(String name);
+
+    Tournament findByName(String name);
 }
